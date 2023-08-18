@@ -25,7 +25,7 @@
  *
  * @version 2.0
  * @author Jaewook Jung
- * @date 2023/08/16
+ * @date 2023/06/06
  */
 
 namespace GraphTheory
@@ -71,6 +71,7 @@ template <Directiontype isdirected> int Graph<isdirected>::get_size() const
     return this->size;
 }
 
+#ifdef EnableDebugTools
 /**
  * @brief Gets the adjacency list of a vertex.
  * @param index the index of the wanted vertex
@@ -115,19 +116,7 @@ void Graph<isdirected>::print_adj(int index) const
     for (auto j : this->adj[index])
         std::cout << "(" << j.first << ", " << j.second << ") ";
 }
-
-/**
- * @brief Sorts adj for BFS and DFS.
- * @return void
- */
-[[deprecated("Don\'t use this. BFS and DFS in this library doesn\'t work as "
-             "you think.")]] template <Directiontype isdirected>
-void Graph<isdirected>::sort_graph(void)
-{
-    for (int i = 0; i < this->size; i++)
-        std::sort(adj[i].begin(), adj[i].end());
-    return;
-}
+#endif
 
 /**
  * @brief Runs an dijkstra's algorithm on the graph.
@@ -397,7 +386,7 @@ int Graph<isdirected>::BellmanFord(int start, std::vector<int> &dist) const
  * @param visit the function to run on every node
  * @return void
  */
-[[deprecated("Don\'t use this. BFS and DFS in this library doesn\'t work as "
+[[deprecated("Don\'t use this if you don\'t know exactly what you are doing. BFS and DFS in this library doesn\'t work as "
              "you think.")]] template <Directiontype isdirected>
 void Graph<isdirected>::bfs(int start, void (*visit)(int)) const
 {
@@ -431,7 +420,7 @@ void Graph<isdirected>::bfs(int start, void (*visit)(int)) const
  * @param visit the function to run on every node
  * @return void
  */
-[[deprecated("Don\'t use this. BFS and DFS in this library doesn\'t work as "
+[[deprecated("Don\'t use this if you don\'t know exactly what you are doing. BFS and DFS in this library doesn\'t work as "
              "you think.")]] template <Directiontype isdirected>
 void Graph<isdirected>::dfs(int start, void (*visit)(int)) const
 {

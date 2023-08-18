@@ -16,6 +16,7 @@
  * a sort_graph function. 1.8 note:   added a return option to returun the full
  * list 2.0 note:   modified the way to use the graph, seperated the file to
  * two. Added the Bellman-Ford algorithm. added namespace; GraphTheory
+ * 2.3 note:  Optimized code
  *
  * Use is at your risk.
  *
@@ -23,9 +24,9 @@
  *
  * visit by blog! bit.ly/codingbear314
  *
- * @version 2.0
+ * @version 2.3
  * @author Jaewook Jung
- * @date 2023/08/16
+ * @date 2023/06/06
  */
 
 #include <iostream>
@@ -62,8 +63,6 @@ template <Directiontype isdirected> class Graph
     void print_graph() const;
     void print_adj(int) const;
 
-    void sort_graph(void);
-
     int dijkstra(int, int, std::vector<int> &) const;
     int dijkstra(int, int) const;
     void dijkstra(int, std::vector<int> &) const;
@@ -71,9 +70,6 @@ template <Directiontype isdirected> class Graph
     int BellmanFord(int, int) const;
     int BellmanFord(int, int, std::vector<int> &) const;
     int BellmanFord(int, std::vector<int> &) const;
-
-    void bfs(int, void (*)(int)) const;
-    void dfs(int, void (*)(int)) const;
 };
 } // namespace GraphTheory
 #include "Graph.cpp"
