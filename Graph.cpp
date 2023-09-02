@@ -6,7 +6,7 @@
 /**
  * Graph.h & Graph.cpp
  *
- * Version 2.0
+ * Version 2.3
  *
  * Upgrade notes
  * 1.0 note:   this code features a graph class that can run Dijkstra's
@@ -376,74 +376,6 @@ int Graph<isdirected>::BellmanFord(int start, std::vector<int> &dist) const
             return -1;
     }
     return 0;
-}
-
-/**
- * @brief Runs a BFS on the graph, and runs visit function every time it visits
- * a node.
- *
- * @param start the starting vertex
- * @param visit the function to run on every node
- * @return void
- */
-[[deprecated("Don\'t use this if you don\'t know exactly what you are doing. BFS and DFS in this library doesn\'t work as "
-             "you think.")]] template <Directiontype isdirected>
-void Graph<isdirected>::bfs(int start, void (*visit)(int)) const
-{
-    if (start > this->size)
-        throw std::invalid_argument("Invalid starting point");
-
-    std::queue<int> bfs_queue;
-    std::vector<bool> visited(this->size, false);
-    bfs_queue.push(start);
-    while (!bfs_queue.empty())
-    {
-        int now = bfs_queue.front();
-        bfs_queue.pop();
-        visit(now);
-        visited[now] = true;
-        for (auto i : this->adj[now])
-            if (!visited[i.first])
-            {
-                bfs_queue.push(i.first);
-                visited[i.first] = true;
-            }
-    }
-    return;
-}
-
-/**
- * @brief Runs a DFS on the graph, and runs visit function every time it visits
- * a node.
- *
- * @param start the starting vertex
- * @param visit the function to run on every node
- * @return void
- */
-[[deprecated("Don\'t use this if you don\'t know exactly what you are doing. BFS and DFS in this library doesn\'t work as "
-             "you think.")]] template <Directiontype isdirected>
-void Graph<isdirected>::dfs(int start, void (*visit)(int)) const
-{
-    if (start > this->size)
-        throw std::invalid_argument("Invalid starting point");
-
-    std::stack<int> dfs_stack;
-    std::vector<bool> visited(this->size, false);
-    dfs_stack.push(start);
-    while (!dfs_stack.empty())
-    {
-        int now = dfs_stack.top();
-        dfs_stack.pop();
-        visited[now] = true;
-        visit(now);
-        for (auto i : this->adj[now])
-            if (!visited[i.first])
-            {
-                dfs_stack.push(i.first);
-                visited[i.first] = true;
-            }
-    }
-    return;
 }
 } // namespace GraphTheory
 
